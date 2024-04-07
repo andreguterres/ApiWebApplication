@@ -2,11 +2,11 @@
 
 namespace WebApi.Controllers
 {
-    public class ClienteController : Controller
+    public class ClienteController : ControllerBase
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
     }
 }
