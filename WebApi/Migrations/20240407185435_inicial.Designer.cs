@@ -12,7 +12,7 @@ using WebApi.Data;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(ClassDbContext))]
-    [Migration("20240407155013_inicial")]
+    [Migration("20240407185435_inicial")]
     partial class inicial
     {
         /// <inheritdoc />

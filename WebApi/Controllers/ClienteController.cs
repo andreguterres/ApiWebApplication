@@ -55,5 +55,21 @@ namespace WebApi.Controllers
             return Ok(pedido);
 
         }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            await _clientes.Deletar(id);
+
+            return Ok("Cliente Foi deletado!");
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> Atualizar(Cliente cliente)
+        {
+
+            await _clientes.Atualizar(cliente);
+
+            return Ok("Foi Atualizado!");
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
 using WebApi.Entities;
 
@@ -25,12 +26,19 @@ namespace WebApi.Repository
         public async Task<List<Cliente>> Atualizar(Cliente cliente)
         {
             var clientex = await _context.Clientes.Where(x => x.ClienteId == cliente.ClienteId).FirstOrDefaultAsync();
+            //var clienteLogradouro = await _context.();
 
-          
+
+
             clientex.Nome = cliente.Nome;
             clientex.Email = cliente.Email;
             clientex.Logotipo = cliente.Logotipo;
-            cliente.Logradouros = cliente.Logradouros;
+
+            foreach (var item in cliente.Logradouros)
+            {
+                clientex.Logradouros.Add(item);
+
+            }
            
             _context.Clientes.Update(clientex);
             await _context.SaveChangesAsync();
