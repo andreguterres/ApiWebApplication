@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using WebApi.Entities;
 using WebApi.Repository;
 
@@ -20,12 +21,15 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Cliente>>> Adicionar(Cliente cliente)
+        public async Task<ActionResult<List<Cliente>>> Adicionar(Cliente cliente/*, [FromForm] DocumentInfo foto*/)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            //if (!ModelState.IsValid)
+            //    return BadRequest(ModelState);
 
-            //var pedidoDTO = _mapper.Map<Pedido>(pedido);
+            //using( var stream = new FileStream(FileMode.Create, FileAccess.Write))
+            //{
+
+            //}
 
             await _clientes.Adicionar(cliente);
 
@@ -33,14 +37,23 @@ namespace WebApi.Controllers
 
         }
 
-        //[HttpGet]
+        [HttpGet]
 
-        //public async Task<ActionResult<IEnumerable<Pedido>>> Pesquisar()
-        //{
-        //    List<Pedido> pedido = await _pedidos.Pesquisar();
+        public async Task<ActionResult<IEnumerable<Cliente>>> Pesquisar()
+        {
+            List<Cliente> pedido = await _clientes.Pesquisar();
 
-        //    return Ok(pedido);
+            return Ok(pedido);
 
-        //}
+        }
+
+        [HttpGet("/api/PesquisarId")]
+        public async Task<ActionResult<List<Cliente>>> PesquisarId(int id)
+        {
+            List<Cliente> pedido = await _clientes.PesquisarPorId(id);
+
+            return Ok(pedido);
+
+        }
     }
 }

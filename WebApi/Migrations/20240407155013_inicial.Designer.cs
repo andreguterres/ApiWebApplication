@@ -12,7 +12,7 @@ using WebApi.Data;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(ClassDbContext))]
-    [Migration("20240406194339_inicial")]
+    [Migration("20240407155013_inicial")]
     partial class inicial
     {
         /// <inheritdoc />
@@ -39,6 +39,9 @@ namespace WebApi.Migrations
                     b.Property<string>("Logotipo")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ClienteId");
 
                     b.ToTable("Clientes");
@@ -52,16 +55,16 @@ namespace WebApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LogradouroId"));
 
-                    b.Property<int>("Bairro")
-                        .HasColumnType("int");
+                    b.Property<string>("Bairro")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ClienteId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Numero")
-                        .HasColumnType("int");
+                    b.Property<string>("NomeRua")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Rua")
+                    b.Property<string>("Numero")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("LogradouroId");

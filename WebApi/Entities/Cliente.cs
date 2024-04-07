@@ -8,7 +8,7 @@ namespace WebApi.Entities
         public int ClienteId { get; set; }
         public string? Nome { get; set; }
         public string? Email { get; set; }
-        public Blob Logotipo { get; set; }
+        public string? Logotipo { get; set; }
         public List<Logradouro> Logradouros { get; set; } = new List<Logradouro>();
 
     }

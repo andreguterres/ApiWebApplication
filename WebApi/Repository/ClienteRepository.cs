@@ -51,8 +51,14 @@ namespace WebApi.Repository
 
         public async Task<List<Cliente>> Pesquisar()
         {
-            return _context.Clientes.ToList();
+            return _context.Clientes.Include(l => l.Logradouros).ToList();
 
         }
+
+        public async Task<List<Cliente>> PesquisarPorId(int id)
+        {
+            return _context.Clientes.Include(l => l.Logradouros).Where(c => c.ClienteId == id).ToList();
+        }
+
     }
 }

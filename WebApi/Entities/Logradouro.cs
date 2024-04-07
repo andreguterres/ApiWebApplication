@@ -3,9 +3,9 @@
     public class Logradouro
     {
         public int LogradouroId { get; set; }
-        public string? Rua { get; set; }
-        public int Numero { get; set; }
-        public int Bairro { get; set; }
+        public string? NomeRua { get; set; }
+        public string? Numero { get; set; }    
+        public string? Bairro { get; set; }
         
     }
 }

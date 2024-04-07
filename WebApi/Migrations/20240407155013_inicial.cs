@@ -16,6 +16,7 @@ namespace WebApi.Migrations
                 {
                     ClienteId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Logotipo = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -30,9 +31,9 @@ namespace WebApi.Migrations
                 {
                     LogradouroId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Rua = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Numero = table.Column<int>(type: "int", nullable: false),
-                    Bairro = table.Column<int>(type: "int", nullable: false),
+                    NomeRua = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Numero = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Bairro = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClienteId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
