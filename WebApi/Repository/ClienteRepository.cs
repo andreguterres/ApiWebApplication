@@ -26,16 +26,12 @@ namespace WebApi.Repository
         {
             var clientex = await _context.Clientes.Where(x => x.ClienteId == cliente.ClienteId).FirstOrDefaultAsync();
 
+          
             clientex.Nome = cliente.Nome;
             clientex.Email = cliente.Email;
             clientex.Logotipo = cliente.Logotipo;
             cliente.Logradouros = cliente.Logradouros;
-            //if (groceryList == null)
-            //    return NotFound();
-            //if (model.Title != null)
-            //    groceryList.Title = model.Title;
-            //if (model.Description != null)
-            //    groceryList.Description = model.Description;
+           
             _context.Clientes.Update(clientex);
             await _context.SaveChangesAsync();
 
