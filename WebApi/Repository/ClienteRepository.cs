@@ -8,6 +8,11 @@ namespace WebApi.Repository
     {
         private readonly ClassDbContext _context;
 
+        public ClienteRepository(ClassDbContext context)
+        {
+            _context = context;
+        }
+
         public async Task<object> Adicionar(Cliente cliente)
         {
             _context.Clientes.Add(cliente);
@@ -17,9 +22,24 @@ namespace WebApi.Repository
             return cliente;
         }
 
-        public Task<List<Cliente>> Atualizar(Cliente pedido)
+        public async Task<List<Cliente>> Atualizar(Cliente cliente)
         {
-            throw new NotImplementedException();
+            var clientex = await _context.Clientes.Where(x => x.ClienteId == cliente.ClienteId).FirstOrDefaultAsync();
+
+            clientex.Nome = cliente.Nome;
+            clientex.Email = cliente.Email;
+            clientex.Logotipo = cliente.Logotipo;
+            cliente.Logradouros = cliente.Logradouros;
+            //if (groceryList == null)
+            //    return NotFound();
+            //if (model.Title != null)
+            //    groceryList.Title = model.Title;
+            //if (model.Description != null)
+            //    groceryList.Description = model.Description;
+            _context.Clientes.Update(clientex);
+            await _context.SaveChangesAsync();
+
+            return new List<Cliente> { cliente };
         }
 
         public async Task<List<Cliente>> Deletar(int id)
