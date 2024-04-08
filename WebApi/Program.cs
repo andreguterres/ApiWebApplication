@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
 using WebApi.Repository;
@@ -9,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ClassDbContext>(options =>
 options.UseSqlServer(connection));
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<ClassDbContext>();
 
 builder.Services.AddScoped<ICliente, ClienteRepository>();
 
@@ -32,7 +36,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseAuthentication();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

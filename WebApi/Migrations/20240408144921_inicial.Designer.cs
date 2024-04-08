@@ -12,7 +12,7 @@ using WebApi.Data;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(ClassDbContext))]
-    [Migration("20240407185435_inicial")]
+    [Migration("20240408144921_inicial")]
     partial class inicial
     {
         /// <inheritdoc />
@@ -37,6 +37,7 @@ namespace WebApi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Logotipo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")

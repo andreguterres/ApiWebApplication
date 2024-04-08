@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
+using Microsoft.VisualStudio.Web.CodeGeneration;
+using System.Collections.Generic;
+using System.IO;
 using WebApi.Entities;
 using WebApi.Repository;
 
@@ -7,6 +11,7 @@ namespace WebApi.Controllers
 {
     [Route("api/[Controller]")]
     [ApiController]
+    [Authorize]
     public class ClienteController : ControllerBase
     {
         private readonly ICliente _clientes;
@@ -20,22 +25,24 @@ namespace WebApi.Controllers
 
         }
 
-        [HttpPost]
-        public async Task<ActionResult<List<Cliente>>> Adicionar(Cliente cliente/*, [FromForm] DocumentInfo foto*/)
-        {
-            //if (!ModelState.IsValid)
-            //    return BadRequest(ModelState);
+        //[HttpPost]
+        //public async Task<ActionResult<List<Cliente>>> Adicionar([FromForm] Cliente cliente)
+        //{
+        //    var filePath = Path.Combine("Storage", cliente.Logotipo.FileName);
 
-            //using( var stream = new FileStream(FileMode.Create, FileAccess.Write))
-            //{
+        //    using Stream fileStream = new FileStream(filePath, FileMode.Create);
+        //    cliente.Logotipo.CopyTo(fileStream);
 
-            //}
 
-            await _clientes.Adicionar(cliente);
+        //    var clientes = new Cliente(cliente.Nome, cliente.Email, fileStream, cliente.Logradouros);
 
-            return Ok("Cliente criado com sucesso!");
+        //    //Nome, e-mail, Logotipo* e Logradouro    
 
-        }
+        //    await _clientes.Adicionar(clientes);
+
+        //    return Ok("Cliente criado com sucesso!");
+
+        //}
 
         [HttpGet]
 
