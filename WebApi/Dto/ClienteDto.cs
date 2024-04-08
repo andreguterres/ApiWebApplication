@@ -1,27 +1,25 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection.Metadata;
+using WebApi.Entities;
 
-namespace WebApi.Entities
+namespace WebApi.Dto
 {
-    public class Cliente
+    public class ClienteDto
     {
-
-        //Nome, e-mail, Logotipo* e Logradouro
         public int ClienteId { get; set; }
         public string? Nome { get; set; }
         public string? Email { get; set; }
 
         [NotMapped]
         public IFormFile LogoTipoFile { get; set; }
-        public byte[]? LogoTipo { get; set; }
-        public ICollection<Logradouro> Logradouros { get; set; }
 
+        public string? Logotipo { get; set; }
+        public List<LogradouroDto> Logradouros { get; set; } = new List<LogradouroDto>();
 
-        //public Cliente(string? nome, string? email, string logotipo, List<Logradouro> logradouros)
+        //public ClienteDto(string? nome, string? email, string? LogoTipo, List<LogradouroDto> logradouros)
         //{
         //    Nome = nome;
         //    Email = email;
-        //    Logotipo = logotipo;
+        //    LogoTipo = LogoTipo;
         //    Logradouros = logradouros;
         //}
     }

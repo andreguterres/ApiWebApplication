@@ -231,9 +231,8 @@ namespace WebApi.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Logotipo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("LogoTipo")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");

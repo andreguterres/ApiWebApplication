@@ -1,9 +1,14 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGeneration;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
+using WebApi.Dto;
 using WebApi.Entities;
 using WebApi.Repository;
 
@@ -11,38 +16,69 @@ namespace WebApi.Controllers
 {
     [Route("api/[Controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ClienteController : ControllerBase
     {
         private readonly ICliente _clientes;
-        //private readonly IMapper _mapper;
+        private readonly IMapper _mapper;
 
 
-        public ClienteController(ICliente clienteRepositorio/*, IMapper mapper*/)
+        public ClienteController(ICliente clienteRepositorio, IMapper mapper)
         {
             _clientes = clienteRepositorio;
-            //_mapper = mapper;
+            _mapper = mapper;
 
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult<List<Cliente>>> Adicionar([FromForm] Cliente cliente)
-        //{
-        //    var filePath = Path.Combine("Storage", cliente.Logotipo.FileName);
-
-        //    using Stream fileStream = new FileStream(filePath, FileMode.Create);
-        //    cliente.Logotipo.CopyTo(fileStream);
+        [HttpPost]
+        public async Task<ActionResult<List<Cliente>>> Adicionar([FromForm] Cliente cliente)
+        {
+            //var cliente = _mapper.Map<Cliente>(clienteDto);
 
 
-        //    var clientes = new Cliente(cliente.Nome, cliente.Email, fileStream, cliente.Logradouros);
+            using (var memoryStream = new MemoryStream())
+            {
+                await cliente.LogoTipoFile.CopyToAsync(memoryStream);
 
-        //    //Nome, e-mail, Logotipo* e Logradouro    
+                // Upload the file if less than 2 MB
+                //if (memoryStream.Length < 2097152)
+                //{
+                    //var file = new ClienteDto()
+                    //{
+                    cliente.LogoTipo = memoryStream.ToArray();
 
-        //    await _clientes.Adicionar(clientes);
 
-        //    return Ok("Cliente criado com sucesso!");
+                    //};
 
-        //}
+                    await _clientes.Adicionar(cliente);
+
+                //}
+                //else
+                {
+                    ModelState.AddModelError("File", "The file is too large.");
+                }
+            }
+
+
+            //string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
+
+            //var filePath = Path.Combine(".\\Storage\\", cliente.LogoTipoFile.Name);
+
+            //using Stream fileStream = new FileStream(filePath, FileMode.Create);
+            ////var bytes = fileStream.Length;
+
+            //cliente.LogoTipoFile.CopyTo(fileStream);
+
+
+            //var clientes = new Cliente(cliente.Nome, cliente.Email, filePath, cliente.Logradouros);
+
+            ////Nome, e-mail, Logotipo* e Logradouro    
+
+            //await _clientes.Adicionar(clientes);
+
+            return Ok("Cliente criado com sucesso!");
+
+        }
 
         [HttpGet]
 

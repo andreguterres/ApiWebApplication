@@ -12,8 +12,8 @@ using WebApi.Data;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(ClassDbContext))]
-    [Migration("20240408145318_Identity")]
-    partial class Identity
+    [Migration("20240408215524_inicial")]
+    partial class inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -234,9 +234,8 @@ namespace WebApi.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Logotipo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("LogoTipo")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
