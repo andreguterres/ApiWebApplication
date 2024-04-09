@@ -25,18 +25,18 @@ namespace WebApi.Repository
 
         public async Task<List<Cliente>> Atualizar(Cliente cliente)
         {
-            var clientex = await _context.Clientes.Where(x => x.ClienteId == cliente.ClienteId).FirstOrDefaultAsync();
+            var clientes = await _context.Clientes.Where(x => x.ClienteId == cliente.ClienteId).FirstOrDefaultAsync();
 
-            clientex.Nome = cliente.Nome;
-            clientex.Email = cliente.Email;
-            clientex.LogoTipoFile = cliente.LogoTipoFile;
+            clientes.Nome = cliente.Nome;
+            clientes.Email = cliente.Email;
+            clientes.LogoTipoFile = cliente.LogoTipoFile;
 
             foreach (var item in cliente.Logradouros)
             {
-                clientex.Logradouros.Add(item);
+                clientes.Logradouros.Add(item);
 
             }
-            _context.Clientes.Update(clientex);
+            _context.Clientes.Update(clientes);
             await _context.SaveChangesAsync();
 
             return new List<Cliente> { cliente };
