@@ -30,7 +30,8 @@ namespace WebApi.Controllers
 
         }
 
-        [HttpPost]
+        //[Route("Adicionar")]
+        [HttpPost("Adicionar")]
         public async Task<ActionResult<List<Cliente>>> Adicionar([FromForm] Cliente cliente)
         {
             //var cliente = _mapper.Map<Cliente>(clienteDto);
@@ -80,7 +81,7 @@ namespace WebApi.Controllers
 
         }
 
-        [HttpGet]
+        [HttpGet("/api/Pesquisar")]
 
         public async Task<ActionResult<IEnumerable<Cliente>>> Pesquisar()
         {
@@ -90,7 +91,7 @@ namespace WebApi.Controllers
 
         }
 
-        [HttpGet("/api/PesquisarId")]
+        [HttpGet("/api/PesquisarId/{id}")]
         public async Task<ActionResult<List<Cliente>>> PesquisarId(int id)
         {
             List<Cliente> pedido = await _clientes.PesquisarPorId(id);
@@ -98,7 +99,7 @@ namespace WebApi.Controllers
             return Ok(pedido);
 
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("/Delete/{id}")]
         public async Task<ActionResult> Delete(int id)
         {
             await _clientes.Deletar(id);
@@ -106,7 +107,7 @@ namespace WebApi.Controllers
             return Ok("Cliente Foi deletado!");
         }
 
-        [HttpPut]
+        [HttpPut("/api/Atualizar")]
         public async Task<ActionResult> Atualizar(Cliente cliente)
         {
 
