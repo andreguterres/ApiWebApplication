@@ -96,6 +96,8 @@ Resposta 200
 ]
 
 
+A ideia que a foto seja enviada por upload pelo front e que ele trate a propriedade e envie apara api para que ocorra a inserção. ATualmente somente o método Pesquisar está implementado no RazorWeb, os demais métodos vão ser feitos para versões futuras.
+
 
 
 
