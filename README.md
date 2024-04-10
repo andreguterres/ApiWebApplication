@@ -8,7 +8,7 @@ dotnet ef migrations add inicial --project WebApi
 dotnet ef database update --project WebApi -s WebApi --verbose
 
 O upload do arquivo tem entrada public IFormFile LogoTipoFile { get; set; }, e é convertido para public byte[]? LogoTipo { get; set; }, para que seja salvo no banco sqlserver.
-Foram implementados métos de Adicionar, Atualizar, PesqisaId, Pesquisar e Deletar.
+Foram implementados métodos de Adicionar, Atualizar, PesqisaId, Pesquisar e Deletar.
 
 Métotodo Adicionar inclui um Cliente com uma lista de logradouros. Segue o json esperado. 
 {
