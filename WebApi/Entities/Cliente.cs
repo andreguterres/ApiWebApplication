@@ -11,18 +11,11 @@ namespace WebApi.Entities
         public string? Nome { get; set; }
         public string? Email { get; set; }
 
-        [NotMapped]
-        public IFormFile LogoTipoFile { get; set; }
+        //[NotMapped]
+        //public IFormFile LogoTipoFile { get; set; }
         public byte[]? LogoTipo { get; set; }
         public ICollection<Logradouro> Logradouros { get; set; }
 
 
-        //public Cliente(string? nome, string? email, string logotipo, List<Logradouro> logradouros)
-        //{
-        //    Nome = nome;
-        //    Email = email;
-        //    Logotipo = logotipo;
-        //    Logradouros = logradouros;
-        //}
     }
 }

@@ -34,12 +34,33 @@ namespace RazorWeb.Controllers
 
         // POST: ClientesController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
+       //[ValidateAntiForgeryToken]
         public ActionResult Create(Cliente collection)
         {
             try
             {
-                _icliente.Adicionar(collection);
+                using (var memoryStream = new MemoryStream())
+                {
+                    collection.LogoTipoFile.CopyToAsync(memoryStream);
+
+                    // Upload the file if less than 2 MB
+                    //if (memoryStream.Length < 2097152)
+                    //{
+                    //var file = new ClienteDto()
+                    //{
+                    collection.LogoTipo = memoryStream.ToArray();
+
+
+                    //};
+
+                    _icliente.Adicionar(collection);
+
+                    //}
+                    //else
+                    {
+                        ModelState.AddModelError("File", "The file is too large.");
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -84,6 +105,19 @@ namespace RazorWeb.Controllers
             try
             {
                 _icliente.Deletar(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult Criar(Logradouro collection)
+        {
+            try
+            {
+                //_icliente.Adicionar(collection);
                 return RedirectToAction(nameof(Index));
             }
             catch

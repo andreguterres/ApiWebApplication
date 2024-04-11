@@ -1,0 +1,17 @@
+﻿@model RazorWeb.Models.Logradouro
+
+@using (Html.BeginCollectionItem("Logradouros"))
+{
+    <input type="hidden" asp-for="LogradouroId"/>
+    <div class="form-group">
+        <label asp-for="LogradouroId" class="col-form-label"></label>
+        <select asp-for="LogradouroId" class="form-control" asp-items="ViewBag.ClienteId"></select>
+        <button id="remover-logradouro" type="button" class="btn btn-primary" ><i class="glyphicon glyphicon-remove"></i></button>
+    </div>
+
+
+}
+    @*        public int LogradouroId { get; set; }
+           public string? NomeRua { get; set; }
+           public string? Numero { get; set; }
+           public string? Bairro { get; set; } *@

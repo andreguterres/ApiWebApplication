@@ -12,19 +12,13 @@ var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ClassDbContext>(options =>
 options.UseSqlServer(connection));
 
-builder.Services.AddAutoMapper(typeof(EntitiesToDtoMapping));
+//builder.Services.AddAutoMapper(typeof(EntitiesToDtoMapping));
 
-
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<ClassDbContext>();
 
 builder.Services.AddScoped<ICliente, ClienteRepository>();
 
 
-//builder.Services.AddDbContext<ClassDbContext>(Options =>
-//{
-//    Options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-//});
+
 
 
 builder.Services.AddControllers();

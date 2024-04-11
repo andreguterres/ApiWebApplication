@@ -23,42 +23,42 @@ namespace WebApi.Controllers
         private readonly IMapper _mapper;
 
 
-        public ClienteController(ICliente clienteRepositorio, IMapper mapper)
+        public ClienteController(ICliente clienteRepositorio)
         {
             _clientes = clienteRepositorio;
-            _mapper = mapper;
+            //_mapper = mapper;
 
         }
 
         //[Route("Adicionar")]
         [HttpPost("Adicionar")]
-        public async Task<ActionResult<List<Cliente>>> Adicionar([FromForm] Cliente cliente)
+        public async Task<ActionResult<List<Cliente>>> Adicionar(Cliente cliente)
         {
             //var cliente = _mapper.Map<Cliente>(clienteDto);
 
 
-            using (var memoryStream = new MemoryStream())
-            {
-                await cliente.LogoTipoFile.CopyToAsync(memoryStream);
+            //using (var memoryStream = new MemoryStream())
+            //{
+            //    await cliente.LogoTipoFile.CopyToAsync(memoryStream);
 
-                // Upload the file if less than 2 MB
-                //if (memoryStream.Length < 2097152)
-                //{
-                    //var file = new ClienteDto()
-                    //{
-                    cliente.LogoTipo = memoryStream.ToArray();
+            //    // Upload the file if less than 2 MB
+            //    //if (memoryStream.Length < 2097152)
+            //    //{
+            //        //var file = new ClienteDto()
+            //        //{
+            //        cliente.LogoTipo = memoryStream.ToArray();
 
 
-                    //};
+            //        //};
 
-                    await _clientes.Adicionar(cliente);
+            //        await _clientes.Adicionar(cliente);
 
-                //}
-                //else
-                {
-                    ModelState.AddModelError("File", "The file is too large.");
-                }
-            }
+            //    //}
+            //    //else
+            //    {
+            //        ModelState.AddModelError("File", "The file is too large.");
+            //    }
+            //}
 
 
             //string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
@@ -75,7 +75,7 @@ namespace WebApi.Controllers
 
             ////Nome, e-mail, Logotipo* e Logradouro    
 
-            //await _clientes.Adicionar(clientes);
+            await _clientes.Adicionar(cliente);
 
             return Ok("Cliente criado com sucesso!");
 
@@ -91,7 +91,7 @@ namespace WebApi.Controllers
 
         }
 
-        [HttpGet("/api/PesquisarId/{id}")]
+        [HttpGet("PesquisarId/{id}")]
         public async Task<ActionResult<List<Cliente>>> PesquisarId(int id)
         {
             List<Cliente> pedido = await _clientes.PesquisarPorId(id);
@@ -99,7 +99,7 @@ namespace WebApi.Controllers
             return Ok(pedido);
 
         }
-        [HttpDelete("/Delete/{id}")]
+        [HttpDelete("Delete")]
         public async Task<ActionResult> Delete(int id)
         {
             await _clientes.Deletar(id);
@@ -107,7 +107,7 @@ namespace WebApi.Controllers
             return Ok("Cliente Foi deletado!");
         }
 
-        [HttpPut("/api/Atualizar")]
+        [HttpPut("Atualizar")]
         public async Task<ActionResult> Atualizar(Cliente cliente)
         {
 

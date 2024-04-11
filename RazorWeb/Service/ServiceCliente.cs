@@ -12,7 +12,7 @@ namespace RazorWeb.Service
         private readonly string uriApi = "https://localhost:7156/api/";
         public  Cliente Adicionar(Cliente cliente)
         {
-            string uriApis = "https://localhost:7156/api/Cliente/";
+            //string uriApis = "https://localhost:7156";
             var clienteAdicionar = new Cliente();
 
             try
@@ -21,7 +21,7 @@ namespace RazorWeb.Service
                 {
                     string x = JsonConvert.SerializeObject(cliente);
                     var content = new StringContent(x, Encoding.UTF8,"application/json");
-                    var resposta =  clientes.PostAsync(uriApis + "Adicionar",content);
+                    var resposta =  clientes.PostAsJsonAsync(uriApi + "Adicionar",content);
                     resposta.Wait();
                     if (resposta.Result.IsSuccessStatusCode)
                     {
@@ -77,9 +77,9 @@ namespace RazorWeb.Service
             {
                 using (var clientes = new HttpClient())
                 {
-                    string json = JsonConvert.SerializeObject(clienteDeletar);
+                    string json = JsonConvert.SerializeObject(clienteDeletar.ClienteId);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    var resposta = clientes.DeleteAsync(uriApi + "Delete/{id}");
+                    var resposta = clientes.DeleteAsync(uriApi + "Delete");
                     resposta.Wait();
                     if (resposta.Result.IsSuccessStatusCode)
                     {
@@ -132,7 +132,7 @@ namespace RazorWeb.Service
             {
                 using (var clientes = new HttpClient())
                 {
-                    string json = JsonConvert.SerializeObject(clientePesquisarPorId);
+                    string json = JsonConvert.SerializeObject(clientePesquisarPorId.ClienteId);
                     var content = new StringContent(json, Encoding.UTF8);
                     var resposta = clientes.GetAsync(uriApi + "PesquisarId");
                     resposta.Wait();

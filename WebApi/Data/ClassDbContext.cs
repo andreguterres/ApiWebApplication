@@ -4,7 +4,7 @@ using WebApi.Entities;
 
 namespace WebApi.Data
 {
-    public class ClassDbContext: IdentityDbContext
+    public class ClassDbContext: /*Identity*/ DbContext
     {
         public ClassDbContext(DbContextOptions<ClassDbContext> options) : base(options)
         {

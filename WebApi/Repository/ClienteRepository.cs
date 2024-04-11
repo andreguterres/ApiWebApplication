@@ -29,7 +29,7 @@ namespace WebApi.Repository
 
             clientes.Nome = cliente.Nome;
             clientes.Email = cliente.Email;
-            clientes.LogoTipoFile = cliente.LogoTipoFile;
+            //clientes.LogoTipoFile = cliente.LogoTipoFile;
 
             foreach (var item in cliente.Logradouros)
             {
