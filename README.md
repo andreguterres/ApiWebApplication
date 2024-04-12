@@ -96,7 +96,7 @@ Resposta 200
 ]
 
 
-A ideia que a foto seja enviada por upload pelo front e que ele trate a propriedade e envie apara api para que ocorra a inserção. ATualmente somente o método Pesquisar está implementado no RazorWeb, os demais métodos vão ser feitos para versões futuras.
+O CRUD da API está funcionando, e recebendo o arquivo convertido para []byte. A ideia que a foto seja enviada por upload pelo front, e ele está recebendo o arquivo e convertendo para um aary debyte e enviando para inserção. Atualmente somente o método Pesquisar está implementado no RazorWeb, os demais métodos vão ser feitos para versões futuras. 
 
 
 
