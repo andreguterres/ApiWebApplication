@@ -14,7 +14,7 @@ namespace WebApi.Entities
         //[NotMapped]
         //public IFormFile LogoTipoFile { get; set; }
         public byte[]? LogoTipo { get; set; }
-        public ICollection<Logradouro> Logradouros { get; set; }
+        public ICollection<Logradouro>? Logradouros { get; set; }
 
 
     }

@@ -43,23 +43,13 @@ namespace RazorWeb.Controllers
                 {
                     collection.LogoTipoFile.CopyToAsync(memoryStream);
 
-                    // Upload the file if less than 2 MB
-                    //if (memoryStream.Length < 2097152)
-                    //{
-                    //var file = new ClienteDto()
-                    //{
+               
                     collection.LogoTipo = memoryStream.ToArray();
 
 
-                    //};
 
                     _icliente.Adicionar(collection);
 
-                    //}
-                    //else
-                    {
-                        ModelState.AddModelError("File", "The file is too large.");
-                    }
                 }
                 return RedirectToAction(nameof(Index));
             }

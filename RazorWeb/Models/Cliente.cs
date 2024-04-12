@@ -9,8 +9,8 @@ namespace RazorWeb.Models
         public string? Email { get; set; }
 
         [NotMapped]
-        public IFormFile LogoTipoFile { get; set; }        
+        public IFormFile? LogoTipoFile { get; set; }        
         public byte[]? LogoTipo { get; set; }
-        public List <Logradouro> Logradouros { get; set; } 
+        public List <Logradouro>? Logradouros { get; set; } 
     }
 }

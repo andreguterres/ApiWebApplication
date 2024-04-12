@@ -7,7 +7,7 @@ namespace RazorWeb.Interfaces
         Cliente Adicionar(Cliente cliente);
         Cliente Atualizar(Cliente cliente);
         List<Cliente> Pesquisar();
-        Cliente PesquisarPorId(int id);
+        List<Cliente> PesquisarPorId(int id);
         Cliente Deletar(int id);
     }
 }

@@ -31,49 +31,9 @@ namespace WebApi.Controllers
         }
 
         //[Route("Adicionar")]
-        [HttpPost("Adicionar")]
+        [HttpPost("/Adicionar")]
         public async Task<ActionResult<List<Cliente>>> Adicionar(Cliente cliente)
-        {
-            //var cliente = _mapper.Map<Cliente>(clienteDto);
-
-
-            //using (var memoryStream = new MemoryStream())
-            //{
-            //    await cliente.LogoTipoFile.CopyToAsync(memoryStream);
-
-            //    // Upload the file if less than 2 MB
-            //    //if (memoryStream.Length < 2097152)
-            //    //{
-            //        //var file = new ClienteDto()
-            //        //{
-            //        cliente.LogoTipo = memoryStream.ToArray();
-
-
-            //        //};
-
-            //        await _clientes.Adicionar(cliente);
-
-            //    //}
-            //    //else
-            //    {
-            //        ModelState.AddModelError("File", "The file is too large.");
-            //    }
-            //}
-
-
-            //string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
-
-            //var filePath = Path.Combine(".\\Storage\\", cliente.LogoTipoFile.Name);
-
-            //using Stream fileStream = new FileStream(filePath, FileMode.Create);
-            ////var bytes = fileStream.Length;
-
-            //cliente.LogoTipoFile.CopyTo(fileStream);
-
-
-            //var clientes = new Cliente(cliente.Nome, cliente.Email, filePath, cliente.Logradouros);
-
-            ////Nome, e-mail, Logotipo* e Logradouro    
+        {           
 
             await _clientes.Adicionar(cliente);
 
@@ -91,7 +51,7 @@ namespace WebApi.Controllers
 
         }
 
-        [HttpGet("PesquisarId/{id}")]
+        [HttpGet("/api/PesquisarId")]
         public async Task<ActionResult<List<Cliente>>> PesquisarId(int id)
         {
             List<Cliente> pedido = await _clientes.PesquisarPorId(id);
