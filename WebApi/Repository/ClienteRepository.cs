@@ -29,13 +29,9 @@ namespace WebApi.Repository
 
             clientes.Nome = cliente.Nome;
             clientes.Email = cliente.Email;
-            //clientes.LogoTipoFile = cliente.LogoTipoFile;
+            clientes.LogoTipo = cliente.LogoTipo;
+            clientes.Logradouros = cliente.Logradouros;
 
-            foreach (var item in cliente.Logradouros)
-            {
-                clientes.Logradouros.Add(item);
-
-            }
             _context.Clientes.Update(clientes);
             await _context.SaveChangesAsync();
 
