@@ -1,7 +1,12 @@
-using RazorWeb.Interfaces;
+﻿using RazorWeb.Interfaces;
 using RazorWeb.Service;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using RazorWeb.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<RazorWebContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("RazorWebContext") ?? throw new InvalidOperationException("Connection string 'RazorWebContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

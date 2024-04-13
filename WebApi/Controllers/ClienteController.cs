@@ -31,7 +31,7 @@ namespace WebApi.Controllers
         }
 
         //[Route("Adicionar")]
-        [HttpPost("/Adicionar")]
+        [HttpPost("/api/Adicionar")]
         public async Task<ActionResult<List<Cliente>>> Adicionar(Cliente cliente)
         {           
 
@@ -59,7 +59,7 @@ namespace WebApi.Controllers
             return Ok(pedido);
 
         }
-        [HttpDelete("Delete")]
+        [HttpDelete("/api/Delete")]
         public async Task<ActionResult> Delete(int id)
         {
             await _clientes.Deletar(id);
@@ -67,7 +67,7 @@ namespace WebApi.Controllers
             return Ok("Cliente Foi deletado!");
         }
 
-        [HttpPut("/Atualizar")]
+        [HttpPut("api/Atualizar")]
         public async Task<ActionResult> Atualizar(Cliente cliente)
         {
 

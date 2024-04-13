@@ -20,8 +20,8 @@ namespace RazorWeb.Service
                 using (var clientes = new HttpClient())
                 {
                     string x = JsonConvert.SerializeObject(cliente);
-                    var content = new StringContent(x, Encoding.UTF8,"application/json");
-                    var resposta =  clientes.PostAsync(uriApi + "Adicionar",content);
+                    var content = new StringContent(x, Encoding.UTF8, "application/json");
+                    var resposta =  clientes.PostAsync("https://localhost:7156/api/Adicionar", content);
                     resposta.Wait();
                     if (resposta.Result.IsSuccessStatusCode)
                     {
@@ -74,7 +74,7 @@ namespace RazorWeb.Service
                 {
                     string json = JsonConvert.SerializeObject(cliente);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    var resposta = clientes.PutAsync(uriApi + "Atualizar", content);
+                    var resposta = clientes.PutAsync("https://localhost:7156/api/Atualizar", content);
                     resposta.Wait();
                     if (resposta.Result.IsSuccessStatusCode)
                     {
@@ -102,9 +102,9 @@ namespace RazorWeb.Service
             {
                 using (var clientes = new HttpClient())
                 {
-                    string json = JsonConvert.SerializeObject(clienteDeletar.ClienteId);
+                    string json = JsonConvert.SerializeObject(id);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    var resposta = clientes.DeleteAsync(uriApi + $"Delete?=id{content}");
+                    var resposta = clientes.DeleteAsync($"https://localhost:7156/api/Delete?id={id}");
                     resposta.Wait();
                     if (resposta.Result.IsSuccessStatusCode)
                     {
@@ -135,15 +135,17 @@ namespace RazorWeb.Service
                 {
                     string json = JsonConvert.SerializeObject(clientePesquisarPorId);
                     var content = new StringContent(json, Encoding.UTF8);
-                    var resposta = clientes.GetAsync(uriApi + $"PesquisarId?id=9");
-                    //var resposta = clientes.GetAsync(uriApi + "PesquisarId?id=3");
+                    var resposta = clientes.GetStringAsync($"https://localhost:7156/api/PesquisarId?id={id}");
+                    //var resposta = clientes.GetStringAsync(uriApi + "PesquisarId?id=3");
 
-                    resposta.Wait();
-                    if (resposta.Result.IsSuccessStatusCode)
-                    {
-                        var retorno = resposta.Result.Content.ReadAsStringAsync();
-                        clientePesquisarPorId = JsonConvert.DeserializeObject<List<Cliente>>(retorno.Result);
-                    }
+                    //resposta.Wait();
+                  //  if (resposta.Result.IsSuccessStatusCode)
+                    //{
+                        clientePesquisarPorId = JsonConvert.DeserializeObject<Cliente[]>(resposta.Result).ToList();
+
+                        //var retorno = resposta.Result.Content.ReadAsStringAsync();
+                        //clientePesquisarPorId = JsonConvert.DeserializeObject<Cliente>(retorno.Result);
+                   // }
                 }
             }
             catch (Exception)
