@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RazorWeb.Interfaces;
 using RazorWeb.Models;
+using System.Collections.Generic;
 
 namespace RazorWeb.Controllers
 {
@@ -34,7 +35,7 @@ namespace RazorWeb.Controllers
 
         // POST: ClientesController/Create
         [HttpPost]
-       //[ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Create(Cliente collection)
         {
             try
@@ -43,7 +44,7 @@ namespace RazorWeb.Controllers
                 {
                     collection.LogoTipoFile.CopyToAsync(memoryStream);
 
-               
+
                     collection.LogoTipo = memoryStream.ToArray();
 
 
@@ -51,6 +52,7 @@ namespace RazorWeb.Controllers
                     _icliente.Adicionar(collection);
 
                 }
+                //return View();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -99,21 +101,10 @@ namespace RazorWeb.Controllers
             }
             catch
             {
+
                 return View();
             }
         }
 
-        public ActionResult Criar(Logradouro collection)
-        {
-            try
-            {
-                //_icliente.Adicionar(collection);
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

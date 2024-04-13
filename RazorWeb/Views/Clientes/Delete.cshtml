@@ -15,31 +15,57 @@
         @if (Model != null)
         {
             @foreach (var item in Model)
-            {
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => item.ClienteId)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => item.ClienteId)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => item.Nome)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => item.Nome)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => item.Email)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => item.Email)
-                </dd>
+            {        
+
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => item.ClienteId)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => item.ClienteId)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => item.Nome)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => item.Nome)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => item.Email)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => item.Email)
+                    </dd>
+
+
+                <h4>Logradouros</h4>
+
+                for (int i = 0; i < item.Logradouros.Count(); i++)
+                {
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => item.Logradouros[i].NomeRua)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => item.Logradouros[i].NomeRua)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => item.Logradouros[i].Numero)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => item.Logradouros[i].Numero)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => item.Logradouros[i].Bairro)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => item.Logradouros[i].Bairro)
+                    </dd>
+                }
             }
         }
     </dl>
 
     <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" value="Delete" class="btn btn-danger" /> <br /> <br />
         <a asp-action="Index">Back to List</a>
     </form>
 </div>

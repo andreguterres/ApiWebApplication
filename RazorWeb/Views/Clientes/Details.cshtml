@@ -1,54 +1,97 @@
-﻿@model  List<RazorWeb.Models.Cliente>
+﻿@model List<RazorWeb.Models.Cliente>
 
 @{
     ViewData["Title"] = "Details";
 }
 
 <h1>Details</h1>
-
-@* <div>
-    <h4>Cliente</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ClienteId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ClienteId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-    </dl>
-</div> *@
-<table class="table">
-@*     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ClienteId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th></th>
-        </tr>
-    </thead> *@
-    <tbody>
+<br />
+<br />
+<dl class="row">
+    @if (Model != null)
+    {
         @foreach (var item in Model)
         {
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => item.ClienteId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.ClienteId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => item.Nome)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.Nome)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => item.Email)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.Email)
+            </dd>
+
+
+            <h4>Logradouros</h4>
+
+            for (int i = 0; i < item.Logradouros.Count(); i++)
+            {
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => item.Logradouros[i].NomeRua)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => item.Logradouros[i].NomeRua)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => item.Logradouros[i].Numero)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => item.Logradouros[i].Numero)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => item.Logradouros[i].Bairro)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => item.Logradouros[i].Bairro)
+                </dd>
+            }
+        }
+    }
+</dl>
+
+@* <table class="table">
+    <thead>
+        <tr>
+            @foreach (var item in Model)
+            {
+                <th>
+                    @Html.DisplayNameFor(model => item.ClienteId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => item.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => item.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => item.Logradouros[0].NomeRua)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => item.Logradouros[0].Numero)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => item.Logradouros[0].Bairro)
+                </th>
+                <th></th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.ClienteId)
@@ -59,13 +102,29 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
-               
+                @if (item.Logradouros.Count() > 0)
+                {
+                    for (int i = 0; i < item.Logradouros.Count(); i++)
+                    {
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Logradouros[i].NomeRua);
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Logradouros[i].Numero);
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Logradouros[i].Bairro);
+                        </td>
+                    }
+
+                }
             </tr>
         }
     </tbody>
-</table>
+</table> *@
 
 <div>
-@*      @Html.ActionLink("Edit", "Edit", new { id = Model. }) |
- *@     <a asp-action="Index">Back to List</a>
+         @* @Html.ActionLink("Edit", "Edit", new { id = Model })  *@
+        <a asp-action="Index">Back to List</a>
 </div>

@@ -5,17 +5,17 @@
 }
 
 <h1>Create</h1>
-
+<br />
 <h4>Cliente</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-          @*   <div class="form-group">
-                <label asp-for="ClienteId" class="control-label"></label>
-                <input asp-for="ClienteId" class="form-control" />
-                <span asp-validation-for="ClienteId" class="text-danger"></span>
+            @*   <div class="form-group">
+            <label asp-for="ClienteId" class="control-label"></label>
+            <input asp-for="ClienteId" class="form-control" />
+            <span asp-validation-for="ClienteId" class="text-danger"></span>
             </div> *@
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
@@ -32,25 +32,64 @@
                 <input asp-for="LogoTipoFile" class="form-control" />
                 <span asp-validation-for="LogoTipoFile" class="text-danger"></span>
             </div>
+            <br />
+            <h4>Logradouro</h4>
+            <br />
+           @*  @for (int i = 0; i < Model; i++)
+            { *@
+                <div class="form-group">
+                    <label asp-for="Logradouros[0].NomeRua" class="control-label"></label>
+                    <input asp-for="Logradouros[0].NomeRua" class="form-control" />
+                    <span asp-validation-for="Logradouros[0].NomeRua" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Logradouros[0].Numero" class="control-label"></label>
+                    <input asp-for="Logradouros[0].Numero" class="form-control" />
+                    <span asp-validation-for="Logradouros[0].Numero" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Logradouros[0].Bairro" class="control-label"></label>
+                    <input asp-for="Logradouros[0].Bairro" class="form-control" />
+                    <span asp-validation-for="Logradouros[0].Bairro" class="text-danger"></span>
+                </div>
+
+                <br />
 
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <label asp-for="Logradouros[1].NomeRua" class="control-label"></label>
+                <input asp-for="Logradouros[1].NomeRua" class="form-control" />
+                <span asp-validation-for="Logradouros[1].NomeRua" class="text-danger"></span>
             </div>
 
+            <div class="form-group">
+                <label asp-for="Logradouros[1].Numero" class="control-label"></label>
+                <input asp-for="Logradouros[1].Numero" class="form-control" />
+                <span asp-validation-for="Logradouros[1].Numero" class="text-danger"></span>
+            </div>
 
+            <div class="form-group">
+                <label asp-for="Logradouros[1].Bairro" class="control-label"></label>
+                <input asp-for="Logradouros[1].Bairro" class="form-control" />
+                <span asp-validation-for="Logradouros[1].Bairro" class="text-danger"></span>
+            </div>
+
+            @* } *@
+            <br />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<br />
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
