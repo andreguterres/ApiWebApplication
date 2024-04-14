@@ -23,11 +23,11 @@ namespace RazorWeb.Service
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
                     var resposta = clientes.PutAsync("https://localhost:7156/api/Atualizar", content);
                     resposta.Wait();
-                    if (resposta.Result.IsSuccessStatusCode)
-                    {
-                        var retorno = resposta.Result.Content.ReadAsStringAsync();
-                        clienteAtualizar = JsonConvert.DeserializeObject<Cliente[]>(retorno.Result).ToList();
-                    }
+                    //if (resposta.Result.IsSuccessStatusCode)
+                    //{
+                    //    var retorno = resposta.Result.Content.ReadAsStringAsync();
+                    //    clienteAtualizar = JsonConvert.DeserializeObject<Cliente[]>(retorno.Result).ToList();
+                    //}
                 }
             }
             catch (Exception)

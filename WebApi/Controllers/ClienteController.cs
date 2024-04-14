@@ -67,7 +67,7 @@ namespace WebApi.Controllers
             return Ok("Cliente Foi deletado!");
         }
 
-        [HttpPut("api/Atualizar")]
+        [HttpPut("/api/Atualizar")]
         public async Task<ActionResult> Atualizar(Cliente cliente)
         {
 
