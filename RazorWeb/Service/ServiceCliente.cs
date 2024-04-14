@@ -10,6 +10,34 @@ namespace RazorWeb.Service
     public class ServiceCliente : ICliente
     {
         private readonly string uriApi = "https://localhost:7156/api/";
+
+        public List<Cliente> Atualizar(Cliente cliente)
+        {
+            var clienteAtualizar = new List<Cliente>();
+
+            try
+            {
+                using (var clientes = new HttpClient())
+                {
+                    string json = JsonConvert.SerializeObject(cliente);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    var resposta = clientes.PutAsync("https://localhost:7156/api/Atualizar", content);
+                    resposta.Wait();
+                    if (resposta.Result.IsSuccessStatusCode)
+                    {
+                        var retorno = resposta.Result.Content.ReadAsStringAsync();
+                        clienteAtualizar = JsonConvert.DeserializeObject<Cliente[]>(retorno.Result).ToList();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return clienteAtualizar;
+        }
         public  Cliente Adicionar(Cliente cliente)
         {
             //string uriApis = "https://localhost:7156";
@@ -23,11 +51,11 @@ namespace RazorWeb.Service
                     var content = new StringContent(x, Encoding.UTF8, "application/json");
                     var resposta =  clientes.PostAsync("https://localhost:7156/api/Adicionar", content);
                     resposta.Wait();
-                    if (resposta.Result.IsSuccessStatusCode)
-                    {
-                        var retorno = resposta.Result.Content.ReadAsStringAsync();
-                        clienteAdicionar = JsonConvert.DeserializeObject<Cliente>(retorno.Result);
-                    }
+                    //if (resposta.Result.IsSuccessStatusCode)
+                    //{
+                    //    var retorno = resposta.Result.Content.ReadAsStringAsync();
+                    //    clienteAdicionar = JsonConvert.DeserializeObject<Cliente>(retorno.Result);
+                    //}
                 }
             }
             catch (Exception)
@@ -64,33 +92,7 @@ namespace RazorWeb.Service
             return retorno;
         }
 
-        public Cliente Atualizar(Cliente cliente)
-        {
-            var clienteAtualizar = new Cliente();
 
-            try
-            {
-                using (var clientes = new HttpClient())
-                {
-                    string json = JsonConvert.SerializeObject(cliente);
-                    var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    var resposta = clientes.PutAsync("https://localhost:7156/api/Atualizar", content);
-                    resposta.Wait();
-                    if (resposta.Result.IsSuccessStatusCode)
-                    {
-                        var retorno = resposta.Result.Content.ReadAsStringAsync();
-                        clienteAtualizar = JsonConvert.DeserializeObject<Cliente>(retorno.Result);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-            return clienteAtualizar;
-        }
 
         public Cliente Deletar(int id)
         {
@@ -106,17 +108,17 @@ namespace RazorWeb.Service
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
                     var resposta = clientes.DeleteAsync($"https://localhost:7156/api/Delete?id={id}");
                     resposta.Wait();
-                    if (resposta.Result.IsSuccessStatusCode)
-                    {
-                        var retorno = resposta.Result.Content.ReadAsStringAsync();
-                        clienteDeletar = JsonConvert.DeserializeObject<Cliente>(retorno.Result);
-                    }
+                    //if (resposta.Result.IsSuccessStatusCode)
+                    //{
+                    //    var retorno = resposta.Result.Content.ReadAsStringAsync();
+                    //    clienteDeletar =   retorno;
+                    //}
                 }
             }
-            catch (Exception)
+            catch (Exception  mensagem)
             {
 
-                throw;
+               var m = mensagem;
             }
 
             return clienteDeletar;
