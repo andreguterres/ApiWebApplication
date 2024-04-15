@@ -96,7 +96,7 @@ Resposta 200
 ]
 
 
-O CRUD da API está funcionando, e recebendo o arquivo convertido para []byte. A ideia que a foto seja enviada por upload pelo front, e ele está recebendo o arquivo e convertendo para um aary debyte e enviando para inserção. Atualmente somente o método Pesquisar está implementado no RazorWeb, os demais métodos vão ser feitos para versões futuras. 
+O CRUD da API está funcionando, e recebendo o arquivo convertido para []byte. A ideia que a foto seja enviada por upload pelo front, e ele está recebendo o arquivo e convertendo para um array de byte e enviando para inserção. Atualmente no front end o método PesquisarId, Pesquisar, Delete e Create  está implementado no RazorWeb, o Alterar está pegando do banco e trazendo para tela mas não está enviando para api, estou trabalhando nisso. 
 
 
 
