@@ -30,21 +30,19 @@
                 @* <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
                 <div class="form-group">
                     <label asp-for="@item.ClienteId" class="control-label"></label>
-                    <input asp-for="@item.ClienteId" class="form-control" />
+                    <input asp-for="@item.ClienteId" name="ClienteId" class="form-control" />
                     <span asp-validation-for="@item.ClienteId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="@item.Nome" class="control-label"></label>
-                    <input asp-for="[@item.Nome]" id="nome" class="form-control" />
+                    <input asp-for="@item.Nome" name="Nome" class="form-control" />
                     <span asp-validation-for="@item.Nome" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="@item.Email" class="control-label"></label>
-                    <input asp-for="@item.Email" class="form-control" />
+                    <input asp-for="@item.Email" name="Email" class="form-control" />
                     <span asp-validation-for="@item.Email" class="text-danger"></span>
-                </div>
-
-             
+                </div>            
 
                 <br />
 
@@ -56,17 +54,17 @@
                 {
                     <div class="form-group">
                         <label asp-for="@itemx.NomeRua" class="control-label"></label>
-                        <input asp-for="@itemx.NomeRua" class="form-control" />
+                        <input asp-for="@itemx.NomeRua" name="Loradouros.NomeRua" class="form-control" />
                         <span asp-validation-for="@itemx.NomeRua" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="@itemx.Numero" class="control-label"></label>
-                        <input asp-for="@itemx.Numero" class="form-control" />
+                        <input asp-for="@itemx.Numero" name="Numero" class="form-control" />
                         <span asp-validation-for="@itemx.Numero" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="@itemx.Bairro" class="control-label"></label>
-                        <input asp-for="@itemx.Bairro" class="form-control" />
+                        <input asp-for="@itemx.Bairro" name="Bairro" class="form-control" />
                         <span asp-validation-for="@itemx.Bairro" class="text-danger"></span>
                     </div>
                 }
