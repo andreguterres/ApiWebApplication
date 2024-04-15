@@ -9,34 +9,34 @@
 <h4>Cliente</h4>
 <hr />
 <div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="col-md-4">
 
-            <form asp-action="Edit">  
-
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                @*    <div class="form-group">
-            <label asp-for="@item.ClienteId" class="control-label"></label>
-            <input asp-for="@item.ClienteId" class="form-control" />
-            <span asp-validation-for="@item.ClienteId" class="text-danger"></span>
-            </div>  *@
+    <div class="col-md-4">
+        @* <form asp-action="Edit"> *@
+        @using (Html.BeginForm("Edit", "Clientes", FormMethod.Post))
+        {           
+      
+            @foreach (var item in Model)
+            {
+                @* <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+                <div class="form-group">
+                    <label asp-for="@item.ClienteId" class="control-label"></label>
+                     <input asp-for="@item.ClienteId" value="@item.ClienteId" id="clienteId" class="form-control" /> 
+                    <span asp-validation-for="@item.ClienteId" class="text-danger"></span>
+                </div>
                 <div class="form-group">
                     <label asp-for="@item.Nome" class="control-label"></label>
-                    <input asp-for="@item.Nome" class="form-control" />
+                    <input asp-for="@item.Nome" id="@item.Nome" class="form-control" />
                     <span asp-validation-for="@item.Nome" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="@item.Email" class="control-label"></label>
                     <input asp-for="@item.Email" class="form-control" />
                     <span asp-validation-for="@item.Email" class="text-danger"></span>
-                </div><br />
+                </div>
 
-                <div class="form-group">
-                    <label asp-for="@item.Email" class="control-label"></label>
-                    <input asp-for="@item.Email" class="form-control" />
-                    <span asp-validation-for="@item.Email" class="text-danger"></span>
-                </div><br />
+                <br />
+
+                <br />
 
                 <h4>Logradouro</h4>
 
@@ -58,16 +58,17 @@
                         <span asp-validation-for="@itemx.Bairro" class="text-danger"></span>
                     </div>
                 }
-                <br />
-                <div class="form-group">
-                    <input type="submit" value="Edit(@item)" class="btn btn-primary" />
-                </div>
-                <br />
+            }
+            <br />
+            <div class="form-group">
+                <input type="submit"  class="btn btn-primary" />
+            </div>
+            <br />
+        }
+        @* </form> *@
 
-            </form>
+    </div>
 
-        </div>
-    }
 </div>
 
 <div>
@@ -79,3 +80,27 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<script>
+    function Editar(){
+
+
+        var clieteId = $("#clieteId").val();
+
+        var url ="/Clientes/Edit" 
+
+        $.ajax{
+
+            url:url,
+
+                data : { clieteId }
+                , type: "Post"
+                , datatype:"html"
+                , sucess: function(data) {
+
+
+                }
+
+        }
+    });
+</script>

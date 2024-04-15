@@ -129,8 +129,8 @@ namespace RazorWeb.Service
         public List<Cliente> PesquisarPorId(int id)
         {
             var clientePesquisarPorId = new List<Cliente>();
-            //clientePesquisarPorId.ClienteId = id;
 
+            //clientePesquisarPorId.ClienteId = id;
             try
             {
                 using (var clientes = new HttpClient())
@@ -141,9 +141,9 @@ namespace RazorWeb.Service
                     //var resposta = clientes.GetStringAsync(uriApi + "PesquisarId?id=3");
 
                     //resposta.Wait();
-                  //  if (resposta.Result.IsSuccessStatusCode)
+                    //  if (resposta.Result.IsSuccessStatusCode)
                     //{
-                        clientePesquisarPorId = JsonConvert.DeserializeObject<Cliente[]>(resposta.Result).ToList();
+                    clientePesquisarPorId = JsonConvert.DeserializeObject<Cliente[]>(resposta.Result).ToList();
 
                         //var retorno = resposta.Result.Content.ReadAsStringAsync();
                         //clientePesquisarPorId = JsonConvert.DeserializeObject<Cliente>(retorno.Result);
