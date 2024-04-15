@@ -31,9 +31,18 @@
                 <label type="file" asp-for="LogoTipoFile" class="control-label"></label>
                 <input asp-for="LogoTipoFile" class="form-control" />
                 <span asp-validation-for="LogoTipoFile" class="text-danger"></span>
-                <img src="LogoTipoFile" class="img-responsive" alt="" />
+                <img asp-for="LogoTipoFile" class="img-responsive" alt="" />
 
             </div>
+
+        @*     <div class="form-group">
+                @Html.LabelFor(m => m.LogoTipoFile, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.LogoTipoFile, new { type = "file", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LogoTipoFile, "", new { @class = "text-danger" })
+                </div>
+            </div> *@
+
             <br />
             <h4>Logradouro</h4>
             <br />

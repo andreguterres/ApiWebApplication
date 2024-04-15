@@ -1,7 +1,7 @@
 ﻿@model List<RazorWeb.Models.Cliente>
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
 <h1>Edit</h1>
@@ -12,20 +12,30 @@
 
     <div class="col-md-4">
         @* <form asp-action="Edit"> *@
-        @using (Html.BeginForm("Edit", "Clientes", FormMethod.Post))
-        {           
-      
+        @using (Html.BeginForm("Editar", "Clientes", FormMethod.Post))
+        {
+
             @foreach (var item in Model)
             {
+                <div class="col-md-offset-2 col-md-10">
+                    @if (item.LogoTipo != null)
+                    {
+                        var base64 = Convert.ToBase64String(item.LogoTipo);
+                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        <img src='@imgSrc' style="max-width:200px; max-height:200px;" />
+                    }
+                </div>
+                <br />
+
                 @* <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
                 <div class="form-group">
                     <label asp-for="@item.ClienteId" class="control-label"></label>
-                     <input asp-for="@item.ClienteId" value="@item.ClienteId" id="clienteId" class="form-control" /> 
+                    <input asp-for="@item.ClienteId" class="form-control" />
                     <span asp-validation-for="@item.ClienteId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="@item.Nome" class="control-label"></label>
-                    <input asp-for="@item.Nome" id="@item.Nome" class="form-control" />
+                    <input asp-for="[@item.Nome]" id="nome" class="form-control" />
                     <span asp-validation-for="@item.Nome" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -33,6 +43,8 @@
                     <input asp-for="@item.Email" class="form-control" />
                     <span asp-validation-for="@item.Email" class="text-danger"></span>
                 </div>
+
+             
 
                 <br />
 
@@ -61,7 +73,9 @@
             }
             <br />
             <div class="form-group">
-                <input type="submit"  class="btn btn-primary" />
+                @* <input type="submit"  class="btn btn-primary" /> *@
+                <button id="send">SEND</button>
+
             </div>
             <br />
         }
@@ -81,26 +95,26 @@
     }
 }
 
-<script>
-    function Editar(){
+<script src="https://code.jquery.com/jquery-1.9.1.js">
+
+    $('#send').click(function () {
+        break;
+
+        
+       var nome = $("#nome").val();
 
 
-        var clieteId = $("#clieteId").val();
 
-        var url ="/Clientes/Edit" 
-
-        $.ajax{
-
-            url:url,
-
-                data : { clieteId }
-                , type: "Post"
-                , datatype:"html"
-                , sucess: function(data) {
+            $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            url: '/Clientes/Editar',
+            dataType: "json",
+            success: function (nome) {
 
 
-                }
-
-        }
+    },
+        });
     });
+
 </script>

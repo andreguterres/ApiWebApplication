@@ -69,8 +69,9 @@ namespace RazorWeb.Controllers
 
         // POST: ClientesController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Cliente collection)
+
+        //[ValidateAntiForgeryToken]
+        public ActionResult Editar(Cliente collection)
         {
             try
             {
