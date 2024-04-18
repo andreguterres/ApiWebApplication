@@ -11,9 +11,9 @@
 <div class="row">
 
     <div class="col-md-4">
-        @* <form asp-action="Edit"> *@
-        @using (Html.BeginForm("Editar", "Clientes", FormMethod.Post))
-        {
+        <form asp-action="Edit">
+            @* @using (Html.BeginForm("Editar", "Clientes", FormMethod.Post)) *@
+            @* { *@
 
             @foreach (var item in Model)
             {
@@ -42,7 +42,7 @@
                     <label asp-for="@item.Email" class="control-label"></label>
                     <input asp-for="@item.Email" name="Email" class="form-control" />
                     <span asp-validation-for="@item.Email" class="text-danger"></span>
-                </div>            
+                </div>
 
                 <br />
 
@@ -52,32 +52,44 @@
 
                 @foreach (var itemx in item.Logradouros)
                 {
+                    int i = -1;
+                    i++;
+                    string x = Convert.ToString(i);
+
+                    <div class="form-group">
+                        <label asp-for="@itemx.LogradouroId" class="control-label"></label>
+                        <input asp-for="@itemx.LogradouroId" name="Logradouros[0].LogradouroId" class="form-control" />
+                        <span asp-validation-for="@itemx.LogradouroId" class="text-danger"></span>
+                    </div>
+
                     <div class="form-group">
                         <label asp-for="@itemx.NomeRua" class="control-label"></label>
-                        <input asp-for="@itemx.NomeRua" name="Logradouros" class="form-control" />
+                        <input asp-for="@itemx.NomeRua" name="Logradouros[0].NomeRua" class="form-control" />
                         <span asp-validation-for="@itemx.NomeRua" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="@itemx.Numero" class="control-label"></label>
-                        <input asp-for="@itemx.Numero" name="Numero" class="form-control" />
+                        <input asp-for="@itemx.Numero" name="Logradouros[0].Numero" class="form-control" />
                         <span asp-validation-for="@itemx.Numero" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="@itemx.Bairro" class="control-label"></label>
-                        <input asp-for="@itemx.Bairro" name="Bairro" class="form-control" />
+                        <input asp-for="@itemx.Bairro" name="Logradouros[0].Bairro" class="form-control" />
                         <span asp-validation-for="@itemx.Bairro" class="text-danger"></span>
                     </div>
                 }
             }
             <br />
             <div class="form-group">
-                <input type="submit"  class="btn btn-primary" />
-@*                 <button id="send">SEND</button>
- *@
+                <input type="submit" value="Edit" class="btn btn-primary" />
+                <input type="button" onclick="enviar()" value="Exibir Alert" />
+
+                @*                 <button id="send">SEND</button>
+                *@
             </div>
             <br />
-        }
-        @* </form> *@
+            @* } *@
+        </form>
 
     </div>
 
@@ -95,24 +107,25 @@
 
 <script src="https://code.jquery.com/jquery-1.9.1.js">
 
-    $('#send').click(function () {
-        break;
 
-        
-       var nome = $("#nome").val();
+    // $('#send').click(function () {
+    //     break;
 
 
-
-            $.ajax({
-            contentType: 'application/json; charset=utf-8',
-            type: 'POST',
-            url: '/Clientes/Editar',
-            dataType: "json",
-            success: function (nome) {
+    //    var nome = $("#nome").val();
 
 
-    },
-        });
-    });
+
+    //         $.ajax({
+    //         contentType: 'application/json; charset=utf-8',
+    //         type: 'POST',
+    //         url: '/Clientes/Editar',
+    //         dataType: "json",
+    //         success: function (nome) {
+
+
+    // },
+    //     });
+    // });
 
 </script>

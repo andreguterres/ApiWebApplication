@@ -71,7 +71,7 @@ namespace RazorWeb.Controllers
         [HttpPost]
 
         //[ValidateAntiForgeryToken]
-        public ActionResult Editar(Cliente collection)
+        public ActionResult Edit(Cliente collection)
         {
             try
             {
