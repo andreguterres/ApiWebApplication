@@ -67,7 +67,7 @@
                 <input id="Logradouros[0].Bairro" name="Logradouros[0].Bairro" type="text" /></br>
             </div>
             </br>
-          
+
 
 
             <button id="btnAddLogradouro" type="button" class="btn btn-success">
@@ -75,7 +75,8 @@
                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4 "></path>
                 </svg>
             </button>
-            <div id="divLogradouro" style="display: none">
+            </br>
+            <div id="divLogradouro" class="form-group">
             </div>
             <br />
 
@@ -94,21 +95,24 @@
 
 <script type="text/javascript">
 
-     $(document).ready(function () {
+    $(document).ready(function () {
 
-           $("#btnAddLogradouro").click(function () {
-               debugger;
-               let i = $('#divLogradouro')[0].childElementCount;
-               i++;
+        $("#btnAddLogradouro").click(function () {
+            debugger;
+            let i = $('#divLogradouro')[0].childElementCount;
+            i++;
 
-            $('#divLogradouro').append('<div name="logradouros"><div class="form-group"><label>Nome da Rua</label></br><input id=" Logradouros [' + i + '].NomeRua") name = "Logradouro[' + i + '].NomeRua" type = "text"/>' +
-                '<div class= "form-group"><label>Número</label></br><input id="Logradouros[' + i + '].Numero") name = "Logradouros[' + i + '].Numero" type = "text"/></div>' +
-                '<div class= "form-group"><label>Bairro</label></br><input id="Logradouros[' + i + '].Bairro") name = "Logradouros[' + i + '].Bairro" type = "text" /></div>');
-               $('#divLogradouro').show();
-           });
-       });
+            $('#divLogradouro')
+                .append('<div name="logradouros">' +
+                    '<div class="form-group">' +
+                    '<label>Nome da Rua</label></br><input id="Logradouros[' + i + '].NomeRua") name = "Logradouros[' + i + '].NomeRua" type = "text"/></div>' +
+                    '<div class= "form-group"><label>Número</label></br><input id="Logradouros[' + i + '].Numero") name = "Logradouros[' + i + '].Numero" type = "text"/></div>' +
+                    '<div class= "form-group"><label>Bairro</label></br><input id="Logradouros[' + i + '].Bairro") name = "Logradouros[' + i + '].Bairro" type = "text" /></div>');
+            $('#divLogradouro').show();
+        });
+    });
 
-</script> 
+</script>
 
 @section Scripts {
     @{
