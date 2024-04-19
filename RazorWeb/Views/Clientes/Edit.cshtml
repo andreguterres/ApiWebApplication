@@ -54,49 +54,42 @@
 
                 @foreach (var itemx in item.Logradouros)
                 {
-                    int i = -1;
-                    i++;
-                    string x = Convert.ToString(i);
+
 
                     <div class="form-group">
-                        <label asp-for="@itemx.LogradouroId" class="control-label"></label>
-                        <input asp-for="@itemx.LogradouroId" name="Logradouros[0].LogradouroId" class="form-control" />
-                        <span asp-validation-for="@itemx.LogradouroId" class="text-danger"></span>
+                        <label>Nome da Rua</label><br>
+                        @* <input asp-for="@itemx.NomeRua" id="Logradouros[0].NomeRua" name="Email" class="form-control" /> *@
+                        <input id="@itemx.NomeRua" name="Logradouros[0].NomeRua" type="text" /><br>
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="@itemx.NomeRua" class="control-label"></label>
-                        <input asp-for="@itemx.NomeRua" name="Logradouros[0].NomeRua" class="form-control" />
-                        <span asp-validation-for="@itemx.NomeRua" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="@itemx.Numero" class="control-label"></label>
-                        <input asp-for="@itemx.Numero" name="Logradouros[0].Numero" class="form-control" />
-                        <span asp-validation-for="@itemx.Numero" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="@itemx.Bairro" class="control-label"></label>
-                        <input asp-for="@itemx.Bairro" name="Logradouros[0].Bairro" class="form-control" />
-                        <span asp-validation-for="@itemx.Bairro" class="text-danger"></span>
+
+                        <label>Número</label><br>
+                        <input id="Logradouros[0].Numero" name="Logradouros[0].Numero" type="text" /><br>
                     </div>
 
-                  @*   <button id="btnAddLogradouro" type="button" class="btn btn-success">
-                        <svg xmls="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4 "></path>
-                        </svg>
-                    </button>
-                    <div id="divLogradouro" class="form-group">
+                    <div class="form-group">
+
+                        <label>Bairro</label><br>
+                        <input id="Logradouros[0].Bairro" name="Logradouros[0].Bairro" type="text" /><br>
                     </div>
-                    <br /> *@
+
+                    <div class="form-group">
+                    </div>               
                 }
             }
             <br />
+            <button id="btnAddLogradouro" type="button" class="btn btn-success">
+                <svg xmls="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4 "></path>
+                </svg>
+            </button>
+            <div id="divLogradouro" class="form-group">
+            </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Edit" class="btn btn-primary" />
-@*                 <input type="button" onclick="enviar()" value="Exibir Alert" />
- *@
-                @*                 <button id="send">SEND</button>
-                *@
+
             </div>
             <br />
             @* } *@
