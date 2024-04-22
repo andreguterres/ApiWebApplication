@@ -64,7 +64,7 @@
             </div>
 
             <br />
-      
+
             <button id="btnAddLogradouro" type="button" class="btn btn-primary">Adicionar</button>
 
             <button id="removerConteudo" type="button" class="btn btn-danger">Exluir</button>
@@ -92,11 +92,8 @@
     $(document).ready(function () {
 
         $("#btnAddLogradouro").click(function () {
-            debugger;
             let i = $('#divLogradouro')[0].childElementCount;
-            console.log(i);
             i++;
-            debugger;
 
             if (i > 2) {
 
@@ -104,10 +101,10 @@
 
                 $('#divLogradouro')
                     .append('<br><div name="logradouros">' +
-                        '<div class="form-group">' +
+                        '<div class="form-group" id="divLogradouro">' +
                         '<label>Nome da Rua</label></br><input id="Logradouros[' + i + '].NomeRua") name = "Logradouros[' + i + '].NomeRua" type = "text"  class="form-control"/></div>' +
                         '<div class= "form-group"><label>Número</label></br><input id="Logradouros[' + i + '].Numero") name = "Logradouros[' + i + '].Numero" type = "text"  class="form-control"/></div>' +
-                        '<div class= "form-group"><label>Bairro</label></br><input id="Logradouros[' + i + '].Bairro") name = "Logradouros[' + i + '].Bairro" type = "text"  class="form-control" /></div><br> ');
+                        '<div class= "form-group"><label>Bairro</label></br><input id="Logradouros[' + i + '].Bairro") name = "Logradouros[' + i + '].Bairro" type = "text"  class="form-control" /></div><br>' + '<button id="removerConteudo" type="button" class="btn btn-danger">Exluir</button>');
                 $('#divLogradouro').show();
 
 
@@ -115,21 +112,48 @@
 
                 $('#divLogradouro')
                     .append('<br><div name="logradouros">' +
-                        '<div class="form-group">' +
+                        '<div class="form-group" id="divLogradouro">' +
                         '<label>Nome da Rua</label></br><input id="Logradouros[' + i + '].NomeRua") name = "Logradouros[' + i + '].NomeRua" type = "text"  class="form-control"/></div>' +
                         '<div class= "form-group"><label>Número</label></br><input id="Logradouros[' + i + '].Numero") name = "Logradouros[' + i + '].Numero" type = "text"  class="form-control"/></div>' +
-                        '<div class= "form-group"><label>Bairro</label></br><input id="Logradouros[' + i + '].Bairro") name = "Logradouros[' + i + '].Bairro" type = "text"  class="form-control" /></div><br> ');
+                        '<div class= "form-group"><label>Bairro</label></br><input id="Logradouros[' + i + '].Bairro") name = "Logradouros[' + i + '].Bairro" type = "text"  class="form-control" /></div><br>' + '<button id="removerConteudo" type="button" class="btn btn-danger">Exluir</button>');
                 $('#divLogradouro').show();
 
             }
 
+            // $(document).on("click", "#removerConteudo", function () {
+            //     $(this)
+            //         .closest("#divLogradouro")
+            //         .remove();
+
             $("#removerConteudo").click(function () {
                 debugger;
+
                 $('#divLogradouro').empty();
+                // $(this).closest("#divLogradouro")
+                //     .remove();
 
             });
         });
     });
+
+    // $(document).ready(function () {
+    //     // cópia da div com os inputs
+
+    //     var clone_step1 = $("#step1")
+    //         .find(".duplicar-presencial")[0].outerHTML;
+
+    //     $(document).on("click", ".add-presencial", function (e) {
+    //         $("#step1")
+    //             .append(clone_step1); // insere nova linha
+    //     });
+
+    //     $(document).on("click", ".del-presencial", function () {
+    //         $(this)
+    //             .closest(".duplicar-presencial")
+    //             .remove();
+    //     });
+
+    // });
 
 </script>
 
