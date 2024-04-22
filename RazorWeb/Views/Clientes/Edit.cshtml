@@ -13,7 +13,7 @@
 <div class="row">
 
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" id="edicao">
             @* @using (Html.BeginForm("Editar", "Clientes", FormMethod.Post)) *@
             @* { *@
 
@@ -55,35 +55,43 @@
                 @foreach (var itemx in item.Logradouros)
                 {
 
+                    <input asp-for="@itemx.LogradouroId" name="Logradouros[0].LogradouroId" class="form-control" />
+
 
                     <div class="form-group">
                         <label>Nome da Rua</label><br>
-                        <input asp-for="@itemx.NomeRua" name="Email" class="form-control" />
+                        <input asp-for="@itemx.NomeRua" name="Logradouros[0].NomeRua" class="form-control" />
                         @* <input id="@itemx.NomeRua"  type="text" class="form-control /><br> *@
                     </div>
 
                     <div class="form-group">
 
                         <label>Número</label><br>
-                        <input id="Logradouros[0].Numero" name="Logradouros[0].Numero" type="text" class="form-control /><br>
+                        @* <input id="Logradouros[0].Numero" name="Logradouros[0].Numero" type="text" class="form-control /><br> *@
+                        <input asp-for="@itemx.Numero" name="Logradouros[0].Numero" class="form-control" />
+
                     </div>
 
                     <div class="form-group">
 
                         <label>Bairro</label><br>
-                        <input id="Logradouros[0].Bairro" name="Logradouros[0].Bairro" type="text" class="form-control  /><br>
-                    </div>
+                        @* <input id="Logradouros[0].Bairro" name="Logradouros[0].Bairro" type="text" class="form-control  /><br> *@
+                        <input asp-for="@itemx.Bairro" name="Logradouros[0].Bairro" class="form-control" />
 
-                    <div class="form-group">
-                    </div>               
+
+                    </div>    
+                    <br>
+
+               
+                    <br />
                 }
             }
             <br />
-            <button id="btnAddLogradouro" type="button" class="btn btn-success">
-                <svg xmls="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4 "></path>
-                </svg>
-            </button>
+            <div id="divLogradouro" class="form-group">
+            </div>
+            <button id="btnAddLogradouro" type="button" class="btn btn-primary">Adicionar</button>
+
+            <button id="removerConteudo" type="button" class="btn btn-danger">Exluir</button>
             <div id="divLogradouro" class="form-group">
             </div>
             <br />
@@ -114,19 +122,70 @@
     $(document).ready(function () {
 
         $("#btnAddLogradouro").click(function () {
-            debugger;
             let i = $('#divLogradouro')[0].childElementCount;
             i++;
 
-            $('#divLogradouro')
-                .append('<div name="logradouros">' +
-                    '<div class="form-group">' +
-                    '<label>Nome da Rua</label></br><input id="Logradouros[' + i + '].NomeRua") name = "Logradouros[' + i + '].NomeRua" type = "text" class="form-control"/></div>' +
-                    '<div class= "form-group"><label>Número</label></br><input id="Logradouros[' + i + '].Numero") name = "Logradouros[' + i + '].Numero" type = "text" class="form-control"/></div>' +
-                    '<div class= "form-group"><label>Bairro</label></br><input id="Logradouros[' + i + '].Bairro") name = "Logradouros[' + i + '].Bairro" type = "text" class="form-control" /></div>');
-            $('#divLogradouro').show();
+            if (i > 2) {
+
+                i--;
+
+                $('#divLogradouro')
+                    .append('<br><div name="logradouros">' +
+                        '<div class="form-group" id="divLogradouro">' +
+                        '<label>Nome da Rua</label></br><input id="Logradouros[' + i + '].NomeRua") name = "Logradouros[' + i + '].NomeRua" type = "text"  class="form-control"/></div>' +
+                        '<div class= "form-group"><label>Número</label></br><input id="Logradouros[' + i + '].Numero") name = "Logradouros[' + i + '].Numero" type = "text"  class="form-control"/></div>' +
+                        '<div class= "form-group"><label>Bairro</label></br><input id="Logradouros[' + i + '].Bairro") name = "Logradouros[' + i + '].Bairro" type = "text"  class="form-control" /></div><br>');
+                $('#divLogradouro').show();
+
+
+            } else {
+
+                $('#divLogradouro')
+                    .append('<br><div name="logradouros">' +
+                        '<div class="form-group" id="divLogradouro">' +
+                        '<label>Nome da Rua</label></br><input id="Logradouros[' + i + '].NomeRua") name = "Logradouros[' + i + '].NomeRua" type = "text"  class="form-control"/></div>' +
+                        '<div class= "form-group"><label>Número</label></br><input id="Logradouros[' + i + '].Numero") name = "Logradouros[' + i + '].Numero" type = "text"  class="form-control"/></div>' +
+                        '<div class= "form-group"><label>Bairro</label></br><input id="Logradouros[' + i + '].Bairro") name = "Logradouros[' + i + '].Bairro" type = "text"  class="form-control" /></div><br>');
+                $('#divLogradouro').show();
+
+            }
+
+            $("#removerConteudo").click(function () {
+                debugger;
+
+                $('#divLogradouro').empty();
+
+            });
         });
     });
+
+    const formEl = document.getElementById('edicao')
+
+    formEl.addEventListener('submit', evento => {
+        evento.preventDefault();
+
+        const formData = new FormData(formEl);
+        const x = Object.fromEntries(formData);
+        console.log(x);
+
+    })
+
+    // $(document).ready(function () {
+
+    //     $("#btnAddLogradouro").click(function () {
+    //         debugger;
+    //         let i = $('#divLogradouro')[0].childElementCount;
+    //         i++;
+
+    //         $('#divLogradouro')
+    //             .append('<div name="logradouros">' +
+    //                 '<div class="form-group">' +
+    //                 '<label>Nome da Rua</label></br><input id="Logradouros[' + i + '].NomeRua") name = "Logradouros[' + i + '].NomeRua" type = "text" class="form-control"/></div>' +
+    //                 '<div class= "form-group"><label>Número</label></br><input id="Logradouros[' + i + '].Numero") name = "Logradouros[' + i + '].Numero" type = "text" class="form-control"/></div>' +
+    //                 '<div class= "form-group"><label>Bairro</label></br><input id="Logradouros[' + i + '].Bairro") name = "Logradouros[' + i + '].Bairro" type = "text" class="form-control" /></div>');
+    //         $('#divLogradouro').show();
+    //     });
+    // });
 
 
 </script>

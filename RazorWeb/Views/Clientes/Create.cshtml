@@ -65,16 +65,20 @@
 
             <br />
 
+            <div id="divLogradouro" class="form-group">
+            </div>
+            <br />
+
             <button id="btnAddLogradouro" type="button" class="btn btn-primary">Adicionar</button>
 
             <button id="removerConteudo" type="button" class="btn btn-danger">Exluir</button>
 
 
-            </br>
-
-            <div id="divLogradouro" class="form-group">
-            </div>
+            <br/>
             <br />
+
+
+            
 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -120,17 +124,10 @@
 
             }
 
-            // $(document).on("click", "#removerConteudo", function () {
-            //     $(this)
-            //         .closest("#divLogradouro")
-            //         .remove();
-
             $("#removerConteudo").click(function () {
                 debugger;
 
                 $('#divLogradouro').empty();
-                // $(this).closest("#divLogradouro")
-                //     .remove();
 
             });
         });
