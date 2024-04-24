@@ -13,7 +13,7 @@
 <div class="row">
 
     <div class="col-md-4">
-        <form asp-action="Edit" id="edicao">
+        <form asp-action="Edit" id="edicao" enctype="multipart/form-data">
             @* @using (Html.BeginForm("Editar", "Clientes", FormMethod.Post)) *@
             @* { *@
 
@@ -52,15 +52,16 @@
 
                 <h4>Logradouro</h4>
 
-                @foreach (var itemx in item.Logradouros)
+                for (int i = 0; i < item.Logradouros.Count; i++)
+
                 {
 
-                    <input asp-for="@itemx.LogradouroId" name="Logradouros[0].LogradouroId" class="form-control" />
+                    <input asp-for="@item.Logradouros[i].LogradouroId" class="form-control" />
 
 
                     <div class="form-group">
                         <label>Nome da Rua</label><br>
-                        <input asp-for="@itemx.NomeRua" name="Logradouros[0].NomeRua" class="form-control" />
+                        <input asp-for="@item.Logradouros[i].NomeRua" class="form-control" />
                         @* <input id="@itemx.NomeRua"  type="text" class="form-control /><br> *@
                     </div>
 
@@ -68,7 +69,7 @@
 
                         <label>Número</label><br>
                         @* <input id="Logradouros[0].Numero" name="Logradouros[0].Numero" type="text" class="form-control /><br> *@
-                        <input asp-for="@itemx.Numero" name="Logradouros[0].Numero" class="form-control" />
+                        <input asp-for="@item.Logradouros[i].Numero" class="form-control" />
 
                     </div>
 
@@ -76,16 +77,15 @@
 
                         <label>Bairro</label><br>
                         @* <input id="Logradouros[0].Bairro" name="Logradouros[0].Bairro" type="text" class="form-control  /><br> *@
-                        <input asp-for="@itemx.Bairro" name="Logradouros[0].Bairro" class="form-control" />
+                        <input asp-for="@item.Logradouros[i].Bairro" class="form-control" />
+                    </div>
 
-
-                    </div>    
                     <br>
-
-               
                     <br />
                 }
             }
+
+
             <br />
             <div id="divLogradouro" class="form-group">
             </div>
@@ -159,16 +159,63 @@
         });
     });
 
-    const formEl = document.getElementById('edicao')
+    // $('#edicao').DataForm({
 
-    formEl.addEventListener('submit', evento => {
-        evento.preventDefault();
+    //     "language": {
 
-        const formData = new FormData(formEl);
-        const x = Object.fromEntries(formData);
-        console.log(x);
+    //         "url":"//cdn"
+    //     }
 
-    })
+    // });
+
+    document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault()
+        const data = Object.fromEntries(new FormData(e.target).entries());
+        // console.log(data)
+        var jsonx = JSON.stringify(data);
+        console.log(jsonx)
+
+        $.ajax({
+            type: "POST",
+            url: "/Clientes/Edit",
+            data: JSON.stringify(data),
+            debugger
+            success: function (msg) {
+                //Qualquer código aqui
+            }
+        });
+
+    });
+
+
+    // const formEl = document.getElementById('edicao')
+
+    // // formEl.addEventListener('submit', evento => {
+    // //     evento.preventDefault();
+
+    // const formData = new FormData(formEl);
+    // const x = Object.fromEntries(formData);
+    // debugger;
+    // var jsonx = JSON.stringify(x);
+    // console.log(json);
+    // // console.log(x);
+
+    // $.ajax({
+    //     type: "POST",
+    //     url: "/Clientes/Edit",
+    //     data: jsonx,
+    //     dataType: "json",
+    //     success: function (msg) {
+    //         //Qualquer código aqui
+    //     }
+    // });
+
+    //                 })
+
+
+
+
+    // });
 
     // $(document).ready(function () {
 
